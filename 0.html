@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>Flame with Smoke Animation</title>	<style>
+
+		body {
+
+			background-color: #222;
+
+			height: 100%;
+
+			display: flex;
+
+			justify-content: center;
+
+			align-items: center;
+
+		}
+
+		
+
+		#flame {
+
+			position: relative;
+
+			width: 150px;
+
+			height: 250px;
+
+			perspective: 1000px;
+
+			cursor: pointer;
+
+		}
+
+		
+
+		#flame::before {
+
+			content: "";
+
+			position: absolute;
+
+			top: -20px;
+
+			left: -20px;
+
+			right: -20px;
+
+			bottom: -20px;
+
+			background: url("https://i.imgur.com/T6nGkHg.png") no-repeat center;
+
+			background-size: cover;
+
+			opacity: 0.5;
+
+			border-radius: 50%;
+
+			transform-style: preserve-3d;
+
+			transform: rotateX(-60deg) rotateY(-30deg);
+
+			animation: flame 1s infinite;
+
+		}
+
+		
+
+		@keyframes flame {
+
+			from {
+
+				transform: rotateX(-60deg) rotateY(-30deg) scale(1);
+
+			}
+
+			to {
+
+				transform: rotateX(-60deg) rotateY(-30deg) scale(1.1);
+
+			}
+
+		}
+
+		
+
+		#flame::after {
+
+			content: "";
+
+			position: absolute;
+
+			top: 80px;
+
+			left: 50px;
+
+			width: 50px;
+
+			height: 80px;
+
+			background: radial-gradient(circle at 20px 20px, #FFF 0%, #FFA500 80%, transparent 100%);
+
+			border-radius: 50%;
+
+			box-shadow: 0 0 15px #FFA500, 0 0 25px #FFA500, 0 0 50px #FFA500, 0 0 75px #FFA500;
+
+			animation: flicker 0.5s infinite alternate;
+
+			transform-style: preserve-3d;
+
+			transform: rotateX(-60deg) rotateY(-30deg);
+
+		}
+
+		
+
+		@keyframes flicker {
+
+			from {
+
+				opacity: 0.9;
+
+				box-shadow: 0 0 15px #FFA500, 0 0 25px #FFA500, 0 0 50px #FFA500, 0 0 75px #FFA500;
+
+			}
+
+			to {
+
+				opacity: 0.6;
+
+				box-shadow: 0 0 15px #FFA500, 0 0 25px #FFA500, 0 0 50px #FFA500, 0 0 100px #FFA500;
+
+			}
+
+		}
+
+		
+
+		#smoke {
+
+			position: absolute;
+
+			top: 60px;
+
+			left: 20px;
+
+			width: 100px;
+
+			height: 100px;
+
+			background: url("https://i.imgur.com/UjKcEhA.png") no-repeat center;
+
+			background-size: cover;
+
+			animation: smoke 3s infinite;
+
+			transform-style: preserve-3d;
+
+			transform: rotateX(-60deg) rotateY(-30deg);
+
+			opacity: 0;
+
+		}
+  
+  
+  @keyframes smoke {
+
+		from {
+
+			transform: translateX(-20px) rotateX(-60deg) rotateY(-30deg) scale(0.8) rotateZ(0deg);
+
+			opacity: 0.5;
+
+		}
+
+		to {
+
+			transform: translateX(20px) rotateX(-60deg) rotateY(-30deg) scale(1.2) rotateZ(-20deg);
+
+			opacity: 0;
+
+		}
+
+	}
+
+	
+
+	#flame:hover::after {
+
+		box-shadow: 0 0 15px #FFA500, 0 0 25px #FFA500, 0 0 50px #FFA500, 0 0 100px #FFA500;
+
+	}
+
+	
+
+	#flame:hover #smoke {
+
+		opacity: 1;
+
+		animation: smoke 2s infinite;
+
+	}
+
+</style>
+  </head>
+
+<body>
+
+	<div id="flame">
+
+		<div id="smoke"></div>
+
+	</div>
+
+</body>
+
+</html>
+  
